@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <polygon data-apartment-id="APT_01" points="445,272 581,272 581,364 445,364"/>
+  <polygon data-apartment-id="APT_02" points="635,252 771,252 771,344 635,344"/>
+  <polygon data-apartment-id="APT_03" points="825,232 961,232 961,324 825,324"/>
+  <polygon data-apartment-id="APT_04" points="445,422 581,422 581,514 445,514"/>
+  <polygon data-apartment-id="APT_05" points="635,402 771,402 771,494 635,494"/>
+  <polygon data-apartment-id="APT_06" points="825,382 961,382 961,474 825,474"/>
+  <polygon data-apartment-id="APT_07" points="445,572 581,572 581,664 445,664"/>
+  <polygon data-apartment-id="APT_08" points="635,552 771,552 771,644 635,644"/>
+  <polygon data-apartment-id="APT_09" points="825,532 961,532 961,624 825,624"/>
+</svg>

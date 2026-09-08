@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ApartmentStatus {
+  AVAILABLE
+  RESERVED
+  SOLD
+}
+
+enum UnitType {
+  APARTMENT
+  GARAGE
+}
+
+model Apartment {
+  id           String           @id @default(cuid())
+  externalId   String           @unique
+  number       String
+  floor        String
+  structure    String
+  totalArea    Decimal          @db.Decimal(7, 2)
+  unitType     UnitType         @default(APARTMENT)
+  price        Decimal?         @db.Decimal(12, 2)
+  currency     String           @default("EUR")
+  roomCount    Decimal?         @db.Decimal(3, 1)
+  status       ApartmentStatus  @default(AVAILABLE)
+  floorplanUrl String?
+  brochureUrl  String?
+  interiorUrl  String?
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+  rooms        ApartmentRoom[]
+
+  @@index([status])
+  @@index([unitType])
+  @@index([number])
+}
+
+model ApartmentRoom {
+  id          String    @id @default(cuid())
+  apartmentId String
+  name        String
+  area        Decimal   @db.Decimal(7, 2)
+  sortOrder   Int       @default(0)
+  apartment   Apartment @relation(fields: [apartmentId], references: [id], onDelete: Cascade)
+
+  @@index([apartmentId, sortOrder])
+}
