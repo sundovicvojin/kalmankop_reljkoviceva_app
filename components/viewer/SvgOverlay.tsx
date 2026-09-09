@@ -61,9 +61,13 @@ export function SvgOverlay({ view, apartmentsByExternalId, activeId, onHover, on
       }
       node.toggleAttribute("data-filtered-out", !apartment);
       if (apartment) {
+        node.style.display = "";
+        node.style.pointerEvents = "";
         node.setAttribute("tabindex", "0");
         node.setAttribute("role", "button");
       } else {
+        node.style.display = "none";
+        node.style.pointerEvents = "none";
         node.removeAttribute("tabindex");
         node.removeAttribute("role");
       }
