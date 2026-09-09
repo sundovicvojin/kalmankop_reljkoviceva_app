@@ -151,6 +151,9 @@ input:focus-visible,
   position: relative;
   min-height: calc(100dvh - var(--header-height) - clamp(28px, 4vw, 56px));
   display: grid;
+  grid-template-columns: minmax(240px, 20%) minmax(0, 1fr);
+  gap: clamp(14px, 1.8vw, 24px);
+  align-items: stretch;
 }
 
 .viewer-stage {
@@ -422,7 +425,7 @@ svg.svg-layer [data-apartment-id].is-active {
   z-index: 10;
   width: 46px;
   height: 46px;
-  display: inline-grid;
+  display: none;
   place-items: center;
   border: 1px solid rgba(245, 239, 227, 0.16);
   border-radius: 50%;
@@ -450,15 +453,7 @@ svg.svg-layer [data-apartment-id].is-active {
 }
 
 .filter-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 58;
-  border: 0;
-  padding: 0;
-  pointer-events: none;
-  opacity: 0;
-  background: rgba(0, 0, 0, 0.34);
-  transition: opacity 180ms ease;
+  display: none;
 }
 
 .filter-backdrop.is-open {
@@ -467,12 +462,10 @@ svg.svg-layer [data-apartment-id].is-active {
 }
 
 .filter-panel {
-  position: fixed;
-  top: 92px;
-  right: 18px;
-  bottom: 18px;
-  z-index: 60;
-  width: min(380px, calc(100vw - 36px));
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   gap: 22px;
@@ -482,12 +475,10 @@ svg.svg-layer [data-apartment-id].is-active {
   background: var(--glass-strong);
   backdrop-filter: blur(22px) saturate(145%);
   box-shadow: var(--shadow);
-  transform: translateX(calc(100% + 28px));
-  transition: transform 220ms ease;
 }
 
-.filter-panel.is-open {
-  transform: translateX(0);
+.filter-panel .close-button {
+  display: none;
 }
 
 .filter-head {
@@ -702,12 +693,24 @@ svg.svg-layer [data-apartment-id].is-active {
   box-shadow: var(--shadow);
 }
 
+.detail-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 49;
+  border: 0;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(5px);
+  cursor: pointer;
+}
+
 .detail-panel.desktop {
-  top: 92px;
-  right: 18px;
-  bottom: 18px;
-  width: min(430px, calc(100vw - 36px));
+  top: 50%;
+  left: 50%;
+  width: min(820px, calc(100vw - 48px));
+  max-height: calc(100dvh - 64px);
   border-radius: 30px;
+  transform: translate(-50%, -50%);
 }
 
 .detail-panel.mobile {
@@ -735,11 +738,51 @@ svg.svg-layer [data-apartment-id].is-active {
   padding: 24px;
 }
 
+.detail-panel.desktop .panel-scroll {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
+  grid-template-areas:
+    "head head"
+    "status floorplan"
+    "metrics floorplan"
+    "actions actions";
+  gap: 18px 22px;
+}
+
+.detail-panel.desktop .panel-head {
+  grid-area: head;
+}
+
+.detail-panel.desktop .panel-status {
+  grid-area: status;
+  margin: 0;
+  align-self: start;
+}
+
+.detail-panel.desktop .metrics {
+  grid-area: metrics;
+  margin: 0;
+}
+
+.detail-panel.desktop .floorplan {
+  grid-area: floorplan;
+  margin: 0;
+}
+
+.detail-panel.desktop .panel-actions {
+  grid-area: actions;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
 .panel-head {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
+}
+
+.panel-status {
+  margin-top: 18px;
 }
 
 .panel-kicker {
@@ -1020,6 +1063,8 @@ svg.svg-layer [data-apartment-id].is-active {
 
   .viewer-layout {
     min-height: calc(100dvh - var(--header-height) - 20px);
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .viewer-stage {
@@ -1048,17 +1093,44 @@ svg.svg-layer [data-apartment-id].is-active {
   }
 
   .filter-toggle {
+    display: inline-grid;
     top: 14px;
     right: 14px;
   }
 
+  .filter-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 58;
+    display: block;
+    border: 0;
+    padding: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.34);
+    transition: opacity 180ms ease;
+  }
+
   .filter-panel {
+    position: fixed;
     top: 82px;
     right: 10px;
     bottom: 10px;
+    z-index: 60;
     width: min(360px, calc(100vw - 20px));
+    min-height: auto;
     border-radius: 26px;
     padding: 20px;
+    transform: translateX(calc(100% + 28px));
+    transition: transform 220ms ease;
+  }
+
+  .filter-panel.is-open {
+    transform: translateX(0);
+  }
+
+  .filter-panel .close-button {
+    display: inline-grid;
   }
 
   .floating-card {
@@ -1073,6 +1145,10 @@ svg.svg-layer [data-apartment-id].is-active {
     display: flex;
   }
 
+  .detail-backdrop {
+    background: rgba(0, 0, 0, 0.42);
+  }
+
   .metrics {
     grid-template-columns: 1fr;
   }
@@ -1081,6 +1157,135 @@ svg.svg-layer [data-apartment-id].is-active {
   .admin-status-form {
     align-items: stretch;
     flex-direction: column;
+  }
+}
+
+@media (max-width: 940px) and (max-height: 520px) and (orientation: landscape) {
+  :root {
+    --header-height: 58px;
+  }
+
+  .site-header {
+    min-height: var(--header-height);
+    padding: max(8px, env(safe-area-inset-top)) max(18px, env(safe-area-inset-right)) 8px max(18px, env(safe-area-inset-left));
+  }
+
+  .brand-mark {
+    width: 34px;
+    height: 34px;
+  }
+
+  .brand-name {
+    font-size: 10px;
+  }
+
+  .project-name {
+    font-size: 17px;
+  }
+
+  .header-link {
+    min-height: 38px;
+    padding: 8px 13px;
+    font-size: 13px;
+  }
+
+  .viewer-page {
+    padding: 8px max(18px, env(safe-area-inset-right)) 8px max(18px, env(safe-area-inset-left));
+  }
+
+  .viewer-layout,
+  .viewer-stage {
+    min-height: calc(100dvh - var(--header-height) - 16px);
+  }
+
+  .viewer-layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .viewer-stage {
+    border-radius: 22px;
+  }
+
+  .filter-toggle {
+    display: inline-grid;
+  }
+
+  .filter-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 58;
+    display: block;
+    border: 0;
+    padding: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.34);
+    transition: opacity 180ms ease;
+  }
+
+  .view-nav {
+    right: 14px;
+    bottom: 12px;
+    transform: none;
+  }
+
+  .filter-panel {
+    position: fixed;
+    top: 10px;
+    right: max(12px, env(safe-area-inset-right));
+    bottom: 10px;
+    z-index: 60;
+    width: min(340px, calc(100vw - 32px));
+    min-height: auto;
+    gap: 14px;
+    padding: 18px;
+    overflow-y: auto;
+    transform: translateX(calc(100% + 28px));
+    transition: transform 220ms ease;
+  }
+
+  .filter-panel.is-open {
+    transform: translateX(0);
+  }
+
+  .filter-panel .close-button {
+    display: inline-grid;
+  }
+
+  .filter-title {
+    font-size: 30px;
+  }
+
+  .filter-chip span {
+    min-height: 38px;
+  }
+
+  .floating-card {
+    display: none;
+  }
+
+  .detail-panel.desktop {
+    display: none;
+  }
+
+  .detail-panel.mobile {
+    display: flex;
+    left: 50%;
+    right: auto;
+    bottom: 50%;
+    width: min(720px, calc(100vw - 36px));
+    max-height: calc(100dvh - 24px);
+    border-radius: 26px;
+    transform: translate(-50%, 50%);
+  }
+
+  .detail-panel.mobile .panel-scroll {
+    padding: 18px;
+  }
+
+  .detail-panel.mobile .sheet-handle {
+    display: none;
   }
 }
 

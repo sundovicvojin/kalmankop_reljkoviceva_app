@@ -24,6 +24,7 @@ export function ApartmentDetail({ apartment, onClose }: Props) {
 
   return (
     <>
+      <button className="detail-backdrop" type="button" aria-label="Zatvori detalje stana" onClick={onClose} />
       <Panel apartment={apartment} onClose={onClose} variant="desktop" />
       <Panel apartment={apartment} onClose={onClose} variant="mobile" />
     </>
@@ -49,7 +50,7 @@ function Panel({ apartment, onClose, variant }: Props & { variant: "desktop" | "
           </button>
         </div>
 
-        <div style={{ marginTop: 18 }}>
+        <div className="panel-status">
           <span className={`status-pill status-${apartment.status}`}>{statusLabels[apartment.status]}</span>
         </div>
 

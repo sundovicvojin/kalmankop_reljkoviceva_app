@@ -244,8 +244,46 @@ export function BuildingViewer({ apartments }: Props) {
     }
   }, []);
 
+  useEffect(() => {
+    function handleKeyDown(event: globalThis.KeyboardEvent) {
+      const target = event.target;
+      const isFormField = target instanceof HTMLElement && ["INPUT", "SELECT", "TEXTAREA"].includes(target.tagName);
+
+      if (isFormField || selectedId || isFilterOpen) {
+        return;
+      }
+
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        void changeView(-1);
+      }
+
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        void changeView(1);
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [changeView, isFilterOpen, selectedId]);
+
   return (
     <div className="viewer-layout">
+      <FilterPanel
+        areaBounds={areaBounds}
+        areaRange={areaRange}
+        isOpen={isFilterOpen}
+        resultCount={filteredApartments.length}
+        selectedStatuses={selectedStatuses}
+        selectedTypes={selectedTypes}
+        totalCount={apartments.length}
+        onAreaChange={setAreaRange}
+        onClose={() => setIsFilterOpen(false)}
+        onReset={resetFilters}
+        onStatusToggle={toggleStatus}
+        onTypeToggle={toggleUnitType}
+      />
       <div className="viewer-stage" aria-label="Prikaz zgrade sa interaktivnim stanovima">
         {isPreloaded ? (
           <>
@@ -282,20 +320,6 @@ export function BuildingViewer({ apartments }: Props) {
               <SlidersHorizontal size={20} aria-hidden />
               {activeFilterCount > 0 ? <span>{activeFilterCount}</span> : null}
             </button>
-            <FilterPanel
-              areaBounds={areaBounds}
-              areaRange={areaRange}
-              isOpen={isFilterOpen}
-              resultCount={filteredApartments.length}
-              selectedStatuses={selectedStatuses}
-              selectedTypes={selectedTypes}
-              totalCount={apartments.length}
-              onAreaChange={setAreaRange}
-              onClose={() => setIsFilterOpen(false)}
-              onReset={resetFilters}
-              onStatusToggle={toggleStatus}
-              onTypeToggle={toggleUnitType}
-            />
           </>
         ) : (
           <ViewerPreloader progress={preloadProgress} />
@@ -379,7 +403,7 @@ function FilterPanel({
   return (
     <>
       <button className={`filter-backdrop ${isOpen ? "is-open" : ""}`} type="button" aria-label="Zatvori filtere" onClick={onClose} />
-      <aside className={`filter-panel ${isOpen ? "is-open" : ""}`} aria-hidden={!isOpen} aria-label="Filteri stanova">
+      <aside className={`filter-panel ${isOpen ? "is-open" : ""}`} aria-label="Filteri stanova">
         <div className="filter-head">
           <div>
             <p className="panel-kicker">Filteri</p>
