@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { BuildingViewer } from "@/components/viewer/BuildingViewer";
 import { getApartments } from "@/lib/apartments";
-import { getContactUrl } from "@/lib/contact-url";
 
 export const dynamic = "force-dynamic";
 
@@ -38,8 +37,6 @@ export default async function HomePage() {
 }
 
 function Header() {
-  const contactUrl = getContactUrl();
-
   return (
     <header className="site-header">
       <Link className="brand-lockup" href="/" aria-label="KALMAN KOP Reljkoviceva 59">
@@ -49,7 +46,7 @@ function Header() {
           <span className="project-name">Reljkoviceva 59</span>
         </span>
       </Link>
-      <a className="header-link" href={contactUrl} target="_blank" rel="noreferrer">
+      <a className="header-link" href="https://kalmankop.rs/kontakt" target="_blank" rel="noreferrer">
         Kontakt
       </a>
     </header>

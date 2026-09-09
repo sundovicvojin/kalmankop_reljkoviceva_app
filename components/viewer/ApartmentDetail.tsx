@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import { Download, ExternalLink, MessageCircle, X } from "lucide-react";
 import type { PublicApartment } from "@/lib/apartments";
-import { getContactUrl } from "@/lib/contact-url";
 import { statusLabels } from "@/lib/status";
 
 type Props = {
@@ -35,7 +34,6 @@ export function ApartmentDetail({ apartment, onClose }: Props) {
 function Panel({ apartment, onClose, variant }: Props & { variant: "desktop" | "mobile" }) {
   const floorplanUrl = `/floorplans/${apartment.externalId}.webp`;
   const brochureUrl = `/brochures/${apartment.externalId}.pdf`;
-  const contactUrl = getContactUrl();
 
   return (
     <aside className={`detail-panel ${variant}`} aria-modal="true" role="dialog" aria-labelledby={`${variant}-apartment-title`}>
@@ -83,7 +81,7 @@ function Panel({ apartment, onClose, variant }: Props & { variant: "desktop" | "
             <Download size={18} aria-hidden />
             Preuzmi brosuru
           </a>
-          <a className="action-link primary" href={contactUrl} target="_blank" rel="noreferrer">
+          <a className="action-link primary" href="https://kalmankop.rs/kontakt" target="_blank" rel="noreferrer">
             <MessageCircle size={18} aria-hidden />
             Kontaktiraj KALMAN KOP
           </a>
