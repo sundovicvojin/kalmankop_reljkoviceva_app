@@ -96,8 +96,9 @@ input:focus-visible,
 }
 
 .brand-mark {
-  width: 42px;
+  width: 78px;
   height: 42px;
+  object-fit: contain;
   flex: 0 0 auto;
 }
 
@@ -298,8 +299,9 @@ svg.svg-layer [data-apartment-id].is-active {
 }
 
 .preloader-logo {
-  width: clamp(58px, 7vw, 88px);
+  width: clamp(108px, 12vw, 160px);
   height: clamp(58px, 7vw, 88px);
+  object-fit: contain;
   filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.35));
 }
 
@@ -1045,8 +1047,9 @@ svg.svg-layer [data-apartment-id].is-active {
   }
 
   .brand-mark {
-    width: 36px;
+    width: 66px;
     height: 36px;
+    object-fit: contain;
   }
 
   .brand-name {
@@ -1177,8 +1180,9 @@ svg.svg-layer [data-apartment-id].is-active {
   }
 
   .brand-mark {
-    width: 34px;
+    width: 62px;
     height: 34px;
+    object-fit: contain;
   }
 
   .brand-name {
