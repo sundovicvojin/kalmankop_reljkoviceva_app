@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Download, ExternalLink, MessageCircle, X } from "lucide-react";
 import type { PublicApartment } from "@/lib/apartments";
 import { statusLabels } from "@/lib/status";
@@ -31,6 +31,14 @@ export function ApartmentDetail({ apartment, onClose }: Props) {
 }
 
 function Panel({ apartment, onClose, variant }: Props & { variant: "desktop" | "mobile" }) {
+  const floorplanUrls = getFloorplanUrls(apartment);
+  const [floorplanIndex, setFloorplanIndex] = useState(0);
+  const floorplanUrl = floorplanUrls[floorplanIndex] ?? null;
+
+  useEffect(() => {
+    setFloorplanIndex(0);
+  }, [apartment.externalId, apartment.floorplanUrl]);
+
   return (
     <aside className={`detail-panel ${variant}`} aria-modal="true" role="dialog" aria-labelledby={`${variant}-apartment-title`}>
       {variant === "mobile" ? <div className="sheet-handle" aria-hidden /> : null}
@@ -60,9 +68,9 @@ function Panel({ apartment, onClose, variant }: Props & { variant: "desktop" | "
           <Metric label="Oznaka" value={apartment.externalId} />
         </div>
 
-        {apartment.floorplanUrl ? (
-          <a className="floorplan" href={apartment.floorplanUrl} target="_blank" rel="noreferrer" aria-label={`Otvori tlocrt za stan ${apartment.number}`}>
-            <img src={apartment.floorplanUrl} alt={`Tlocrt stana ${apartment.number}`} />
+        {floorplanUrl ? (
+          <a className="floorplan" href={floorplanUrl} target="_blank" rel="noreferrer" aria-label={`Otvori tlocrt za stan ${apartment.number}`}>
+            <img src={floorplanUrl} alt={`Tlocrt stana ${apartment.number}`} onError={() => setFloorplanIndex((current) => current + 1)} />
           </a>
         ) : null}
 
@@ -87,6 +95,17 @@ function Panel({ apartment, onClose, variant }: Props & { variant: "desktop" | "
       </div>
     </aside>
   );
+}
+
+function getFloorplanUrls(apartment: PublicApartment) {
+  const basePath = `/floorplans/${apartment.externalId}`;
+  const urls = [`${basePath}.webp`, `${basePath}.png`];
+
+  if (apartment.floorplanUrl && !urls.includes(apartment.floorplanUrl)) {
+    urls.push(apartment.floorplanUrl);
+  }
+
+  return urls;
 }
 
 function formatPrice(apartment: PublicApartment) {

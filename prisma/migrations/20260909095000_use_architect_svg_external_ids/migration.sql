@@ -8,7 +8,6 @@ SET "externalId" = CASE "externalId"
   WHEN 'APT_06' THEN 'APT_S6'
   WHEN 'APT_07' THEN 'APT_S7'
   WHEN 'APT_08' THEN 'APT_S8'
-  WHEN 'APT_09' THEN 'APT_S9'
   ELSE "externalId"
 END
 WHERE "externalId" IN (
@@ -19,6 +18,5 @@ WHERE "externalId" IN (
   'APT_05',
   'APT_06',
   'APT_07',
-  'APT_08',
-  'APT_09'
+  'APT_08'
 );

@@ -22,7 +22,6 @@ const apartments = [
   ["APT_S6", "06", "II sprat", "dvosoban", "58.90", "2.0", "176700.00", UnitType.APARTMENT, ApartmentStatus.RESERVED],
   ["APT_S7", "07", "III sprat", "trosoban", "80.15", "3.0", "240450.00", UnitType.APARTMENT, ApartmentStatus.AVAILABLE],
   ["APT_S8", "08", "III sprat", "cetvorosoban", "96.60", "4.0", "289800.00", UnitType.APARTMENT, ApartmentStatus.SOLD],
-  ["APT_S9", "09", "Povuceni sprat", "trosoban", "84.25", "3.0", "252750.00", UnitType.APARTMENT, ApartmentStatus.AVAILABLE],
 ] as const;
 
 async function main() {
@@ -41,9 +40,9 @@ async function main() {
         currency: "EUR",
         unitType,
         status,
-        floorplanUrl: "/floorplans/apartment-placeholder.svg",
+        floorplanUrl: `/floorplans/${externalId}.webp`,
         brochureUrl: number === "04" ? null : `https://kalmankop.rs/brosure/reljkoviceva-59-stan-${number}.pdf`,
-        interiorUrl: ["03", "05", "09"].includes(number) ? `https://kalmankop.rs/reljkoviceva-59/stan-${number}` : null,
+        interiorUrl: ["03", "05"].includes(number) ? `https://kalmankop.rs/reljkoviceva-59/stan-${number}` : null,
         rooms: {
           create: [
             { name: "Dnevna zona", area: "24.00", sortOrder: 1 },
