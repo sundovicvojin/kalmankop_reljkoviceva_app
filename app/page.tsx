@@ -46,7 +46,7 @@ function Header() {
           <span className="project-name">Reljkoviceva 59</span>
         </span>
       </Link>
-      <a className="header-link" href="https://kalmankop.rs/kontakt" target="_blank" rel="noreferrer">
+      <a className="header-link" href="https://kalmankop.rs/kontakt-kalman-kop-novi-sad/">
         Kontakt
       </a>
     </header>

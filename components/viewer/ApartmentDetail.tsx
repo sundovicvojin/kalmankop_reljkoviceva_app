@@ -81,7 +81,7 @@ function Panel({ apartment, onClose, variant }: Props & { variant: "desktop" | "
             <Download size={18} aria-hidden />
             Preuzmi brosuru
           </a>
-          <a className="action-link primary" href="https://kalmankop.rs/kontakt" target="_blank" rel="noreferrer">
+          <a className="action-link primary" href="https://kalmankop.rs/kontakt-kalman-kop-novi-sad/">
             <MessageCircle size={18} aria-hidden />
             Kontaktiraj KALMAN KOP
           </a>
