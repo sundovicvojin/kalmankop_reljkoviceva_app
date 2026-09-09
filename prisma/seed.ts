@@ -14,15 +14,15 @@ const adapter = new PrismaPg({ connectionString });
 const prisma = new PrismaClient({ adapter });
 
 const apartments = [
-  ["APT_01", "01", "Prizemlje", "dvosoban", "54.80", "2.0", "164400.00", UnitType.APARTMENT, ApartmentStatus.AVAILABLE],
-  ["APT_02", "02", "Prizemlje", "trosoban", "72.35", "3.0", "217050.00", UnitType.APARTMENT, ApartmentStatus.RESERVED],
-  ["APT_03", "03", "I sprat", "dvosoban", "64.20", "2.0", "192600.00", UnitType.APARTMENT, ApartmentStatus.AVAILABLE],
-  ["APT_04", "04", "I sprat", "cetvorosoban", "91.10", "4.0", "273300.00", UnitType.APARTMENT, ApartmentStatus.SOLD],
-  ["APT_05", "05", "II sprat", "trosoban", "76.45", "3.0", "229350.00", UnitType.APARTMENT, ApartmentStatus.AVAILABLE],
-  ["APT_06", "06", "II sprat", "dvosoban", "58.90", "2.0", "176700.00", UnitType.APARTMENT, ApartmentStatus.RESERVED],
-  ["APT_07", "07", "III sprat", "trosoban", "80.15", "3.0", "240450.00", UnitType.APARTMENT, ApartmentStatus.AVAILABLE],
-  ["APT_08", "08", "III sprat", "cetvorosoban", "96.60", "4.0", "289800.00", UnitType.APARTMENT, ApartmentStatus.SOLD],
-  ["APT_09", "09", "Povuceni sprat", "trosoban", "84.25", "3.0", "252750.00", UnitType.APARTMENT, ApartmentStatus.AVAILABLE],
+  ["APT_S1", "01", "Prizemlje", "dvosoban", "54.80", "2.0", "164400.00", UnitType.APARTMENT, ApartmentStatus.AVAILABLE],
+  ["APT_S2", "02", "Prizemlje", "trosoban", "72.35", "3.0", "217050.00", UnitType.APARTMENT, ApartmentStatus.RESERVED],
+  ["APT_S3", "03", "I sprat", "dvosoban", "64.20", "2.0", "192600.00", UnitType.APARTMENT, ApartmentStatus.AVAILABLE],
+  ["APT_S4", "04", "I sprat", "cetvorosoban", "91.10", "4.0", "273300.00", UnitType.APARTMENT, ApartmentStatus.SOLD],
+  ["APT_S5", "05", "II sprat", "trosoban", "76.45", "3.0", "229350.00", UnitType.APARTMENT, ApartmentStatus.AVAILABLE],
+  ["APT_S6", "06", "II sprat", "dvosoban", "58.90", "2.0", "176700.00", UnitType.APARTMENT, ApartmentStatus.RESERVED],
+  ["APT_S7", "07", "III sprat", "trosoban", "80.15", "3.0", "240450.00", UnitType.APARTMENT, ApartmentStatus.AVAILABLE],
+  ["APT_S8", "08", "III sprat", "cetvorosoban", "96.60", "4.0", "289800.00", UnitType.APARTMENT, ApartmentStatus.SOLD],
+  ["APT_S9", "09", "Povuceni sprat", "trosoban", "84.25", "3.0", "252750.00", UnitType.APARTMENT, ApartmentStatus.AVAILABLE],
 ] as const;
 
 async function main() {

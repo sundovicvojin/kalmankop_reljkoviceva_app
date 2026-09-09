@@ -27,7 +27,7 @@ Zamena stvarnih rendera i SVG-ova ne sme zahtevati promenu glavne viewer logike.
 
 ## SVG i stanovi
 
-SVG elementi koriste `data-apartment-id="APT_01"`. Isti `externalId` u bazi povezuje SVG oblik sa stanom.
+SVG elementi koriste `id="APT_S1"` ili `data-apartment-id="APT_S1"`. Isti `externalId` u bazi povezuje SVG oblik sa stanom.
 
 ## Dizajn
 

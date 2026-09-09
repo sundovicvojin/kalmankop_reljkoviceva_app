@@ -1,9 +1,11 @@
 <svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 1080V0H1920V1080H0Z" stroke="#0000FF" stroke-width="2"/>
-<path d="M816 674.5H482L474.052 566.5H811.5L822.5 551H885V656.5H824.5L816 674.5Z" stroke="#0000FF" stroke-width="2"/>
-<path d="M1128 656H884.5V551H1130L1128 656Z" stroke="#0000FF" stroke-width="2"/>
-<path d="M1187.5 656H1128L1130 551H1192.5L1203 559.5H1534.5L1525 668.5H1197.5L1187.5 656Z" stroke="#0000FF" stroke-width="2"/>
-<path d="M811 567H474L465.5 468H811L820.5 462L822.5 551.5L811 567Z" stroke="#0000FF" stroke-width="2"/>
-<path d="M1130.5 551H822.5L820 462H1133L1130.5 551Z" stroke="#0000FF" stroke-width="2"/>
-<path d="M1192 551H1130.5L1133 462H1195.5L1205.5 465L1545.5 464.5L1534.5 559.5L1203.5 560.5L1192 551Z" stroke="#0000FF" stroke-width="2"/>
+<g id="Frame 2">
+<path id="Grupa" d="M0 1080V0H1920V1080H0Z" stroke="#0000FF" stroke-width="2"/>
+<path id="APT_S2" d="M816 674.5H482L474.052 566.5H811.5L822.5 551H885V656.5H824.5L816 674.5Z" stroke="#0000FF" stroke-width="2"/>
+<path id="APT_S3" d="M1128 656H884.5V551H1130L1128 656Z" stroke="#0000FF" stroke-width="2"/>
+<path id="APT_S4" d="M1187.5 656H1128L1130 551H1192.5L1203 559.5H1534.5L1525 668.5H1197.5L1187.5 656Z" stroke="#0000FF" stroke-width="2"/>
+<path id="APT_S6" d="M811 567H474L465.5 468H811L820.5 462L822.5 551.5L811 567Z" stroke="#0000FF" stroke-width="2"/>
+<path id="APT_S7" d="M1130.5 551H822.5L820 462H1133L1130.5 551Z" stroke="#0000FF" stroke-width="2"/>
+<path id="APT_S8" d="M1192 551H1130.5L1133 462H1195.5L1205.5 465L1545.5 464.5L1534.5 559.5L1203.5 560.5L1192 551Z" stroke="#0000FF" stroke-width="2"/>
+</g>
 </svg>

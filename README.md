@@ -47,10 +47,10 @@ Public aplikacija je na `/`. Admin je na `/manage-reljkoviceva`.
 Stanovi i garaze se povezuju sa SVG mapom preko `externalId`:
 
 ```svg
-<path data-apartment-id="APT_01" />
+<path id="APT_S1" />
 ```
 
-Isti `externalId` mora da postoji u bazi. Svaki pogled ucitava svoj SVG iz
+Moze i `data-apartment-id="APT_S1"`. Isti `externalId` mora da postoji u bazi. Svaki pogled ucitava svoj SVG iz
 `public/overlays` foldera:
 
 - `public/overlays/Video1.svg`

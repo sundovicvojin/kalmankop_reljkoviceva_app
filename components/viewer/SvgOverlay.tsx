@@ -49,10 +49,13 @@ export function SvgOverlay({ view, apartmentsByExternalId, activeId, onHover, on
       return;
     }
 
-    const nodes = layer.querySelectorAll<SVGElement>("[data-apartment-id]");
+    const nodes = layer.querySelectorAll<SVGElement>("[data-apartment-id], [id^='APT_']");
     nodes.forEach((node) => {
-      const id = node.dataset.apartmentId;
+      const id = apartmentIdFromNode(node);
       const apartment = id ? apartmentsByExternalId.get(id) : null;
+      if (id) {
+        node.setAttribute("data-apartment-id", id);
+      }
       node.setAttribute("tabindex", "0");
       node.setAttribute("role", "button");
       node.setAttribute("aria-label", apartment ? `Stan ${apartment.number}, ${apartment.totalArea} m2, ${statusLabel(apartment.status)}` : "Stan");
@@ -71,7 +74,7 @@ export function SvgOverlay({ view, apartmentsByExternalId, activeId, onHover, on
       return null;
     }
 
-    const externalId = node.dataset.apartmentId ?? null;
+    const externalId = apartmentIdFromNode(node);
     return externalId && apartmentsByExternalId.has(externalId) ? externalId : null;
   }
 
@@ -110,6 +113,10 @@ export function SvgOverlay({ view, apartmentsByExternalId, activeId, onHover, on
       dangerouslySetInnerHTML={{ __html: svg }}
     />
   );
+}
+
+function apartmentIdFromNode(node: SVGElement) {
+  return node.dataset.apartmentId || node.id || null;
 }
 
 function statusLabel(status: PublicApartment["status"]) {
