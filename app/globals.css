@@ -225,6 +225,13 @@ svg.svg-layer {
   display: block;
 }
 
+.svg-layer svg *,
+svg.svg-layer * {
+  pointer-events: none;
+  fill: transparent;
+  stroke: transparent;
+}
+
 .svg-layer [data-apartment-id],
 svg.svg-layer [data-apartment-id] {
   cursor: pointer;

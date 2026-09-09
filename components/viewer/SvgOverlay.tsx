@@ -49,6 +49,9 @@ export function SvgOverlay({ view, apartmentsByExternalId, activeId, onHover, on
       return;
     }
 
+    const root = layer.querySelector("svg");
+    root?.setAttribute("preserveAspectRatio", "xMidYMid slice");
+
     const nodes = layer.querySelectorAll<SVGElement>("[data-apartment-id], [id^='APT_']");
     nodes.forEach((node) => {
       const id = apartmentIdFromNode(node);
