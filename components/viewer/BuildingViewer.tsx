@@ -192,6 +192,10 @@ export function BuildingViewer({ apartments }: Props) {
       return;
     }
 
+    if (event.target instanceof Element && event.target.closest("[data-apartment-id]")) {
+      return;
+    }
+
     dragStartRef.current = {
       x: event.clientX,
       y: event.clientY,

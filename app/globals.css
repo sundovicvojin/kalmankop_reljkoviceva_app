@@ -236,10 +236,18 @@ svg.svg-layer * {
 svg.svg-layer [data-apartment-id] {
   cursor: pointer;
   pointer-events: all;
+  outline: none;
   fill: rgba(217, 191, 122, 0.32);
   stroke: rgba(245, 239, 227, 0.72);
   stroke-width: 3;
   transition: fill 160ms ease, stroke 160ms ease, opacity 160ms ease;
+}
+
+.svg-layer [data-apartment-id]:focus,
+.svg-layer [data-apartment-id]:focus-visible,
+svg.svg-layer [data-apartment-id]:focus,
+svg.svg-layer [data-apartment-id]:focus-visible {
+  outline: none;
 }
 
 .svg-layer [data-status="AVAILABLE"],
