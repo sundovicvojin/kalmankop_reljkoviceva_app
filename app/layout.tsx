@@ -17,6 +17,11 @@ export const metadata: Metadata = {
   metadataBase: metadataBase(),
   title: siteTitle,
   description,
+  icons: {
+    icon: [{ url: "/brand/kalman-logo-placeholder.svg", type: "image/svg+xml" }],
+    shortcut: ["/brand/kalman-logo-placeholder.svg"],
+    apple: [{ url: "/brand/kalman-logo-placeholder.svg", type: "image/svg+xml" }],
+  },
   openGraph: {
     title: siteTitle,
     description,
