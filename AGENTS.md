@@ -19,7 +19,7 @@ Ovo je single-project aplikacija za KALMAN KOP - Reljkoviceva 59. Ne pretvarati 
 ## Assets
 
 - Renderi: `public/building/view-XX/placeholder.webp`
-- Overlay: `public/overlays/view-XX.svg`
+- Overlay: `public/overlays/VideoN.svg` (`Video1.svg` do `Video5.svg`)
 - Tlocrti: `public/floorplans/...`
 - Logo placeholder: `public/brand/kalman-logo-placeholder.svg`
 

@@ -51,13 +51,13 @@ Stanovi i garaze se povezuju sa SVG mapom preko `externalId`:
 ```
 
 Isti `externalId` mora da postoji u bazi. Svaki pogled ucitava svoj SVG iz
-foldera rendera:
+`public/overlays` foldera:
 
-- `public/building/Video1/Video1.svg`
-- `public/building/Video2/Video2.svg`
-- `public/building/Video3/Video3.svg`
-- `public/building/Video4/Video4.svg`
-- `public/building/Video5/Video5.svg`
+- `public/overlays/Video1.svg`
+- `public/overlays/Video2.svg`
+- `public/overlays/Video3.svg`
+- `public/overlays/Video4.svg`
+- `public/overlays/Video5.svg`
 
 Admin podrzava promenu statusa, tipa (`APARTMENT` ili `GARAGE`), kvadrature,
 sobnosti, cene i valute.
