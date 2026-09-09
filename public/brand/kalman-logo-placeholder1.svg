@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" role="img" aria-label="KALMAN KOP">
+  <rect width="80" height="80" rx="22" fill="#11110f"/>
+  <path d="M21 58V22h7v16l15-16h9L36 39l18 19H44L28 41v17h-7Z" fill="#d9bf7a"/>
+  <path d="M58 22h3v36h-3z" fill="#f5efe3" opacity=".75"/>
+</svg>
