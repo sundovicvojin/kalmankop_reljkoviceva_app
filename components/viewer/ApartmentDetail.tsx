@@ -33,6 +33,7 @@ export function ApartmentDetail({ apartment, onClose }: Props) {
 
 function Panel({ apartment, onClose, variant }: Props & { variant: "desktop" | "mobile" }) {
   const floorplanUrl = `/floorplans/${apartment.externalId}.webp`;
+  const brochureUrl = `/brochures/${apartment.externalId}.pdf`;
 
   return (
     <aside className={`detail-panel ${variant}`} aria-modal="true" role="dialog" aria-labelledby={`${variant}-apartment-title`}>
@@ -76,12 +77,10 @@ function Panel({ apartment, onClose, variant }: Props & { variant: "desktop" | "
               Pogledaj stan iznutra
             </a>
           ) : null}
-          {apartment.brochureUrl ? (
-            <a className="action-link" href={apartment.brochureUrl} target="_blank" rel="noreferrer">
-              <Download size={18} aria-hidden />
-              Preuzmi brosuru
-            </a>
-          ) : null}
+          <a className="action-link" href={brochureUrl} target="_blank" rel="noreferrer">
+            <Download size={18} aria-hidden />
+            Preuzmi brosuru
+          </a>
           <a className="action-link primary" href={process.env.NEXT_PUBLIC_CONTACT_URL ?? "https://kalmankop.rs/kontakt"}>
             <MessageCircle size={18} aria-hidden />
             Kontaktiraj KALMAN KOP

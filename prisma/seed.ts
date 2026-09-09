@@ -41,7 +41,7 @@ async function main() {
         unitType,
         status,
         floorplanUrl: `/floorplans/${externalId}.webp`,
-        brochureUrl: number === "04" ? null : `https://kalmankop.rs/brosure/reljkoviceva-59-stan-${number}.pdf`,
+        brochureUrl: `/brochures/${externalId}.pdf`,
         interiorUrl: ["03", "05"].includes(number) ? `https://kalmankop.rs/reljkoviceva-59/stan-${number}` : null,
         rooms: {
           create: [

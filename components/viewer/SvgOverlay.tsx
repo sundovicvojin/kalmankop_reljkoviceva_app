@@ -59,11 +59,17 @@ export function SvgOverlay({ view, apartmentsByExternalId, activeId, onHover, on
       if (id) {
         node.setAttribute("data-apartment-id", id);
       }
-      node.setAttribute("tabindex", "0");
-      node.setAttribute("role", "button");
+      node.toggleAttribute("data-filtered-out", !apartment);
+      if (apartment) {
+        node.setAttribute("tabindex", "0");
+        node.setAttribute("role", "button");
+      } else {
+        node.removeAttribute("tabindex");
+        node.removeAttribute("role");
+      }
       node.setAttribute("aria-label", apartment ? `Stan ${apartment.number}, ${apartment.totalArea} m2, ${statusLabel(apartment.status)}` : "Stan");
       node.setAttribute("data-status", apartment?.status ?? "AVAILABLE");
-      node.classList.toggle("is-active", id === activeId);
+      node.classList.toggle("is-active", Boolean(apartment) && id === activeId);
     });
   }, [activeId, apartmentsByExternalId, svg]);
 

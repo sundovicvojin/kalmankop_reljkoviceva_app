@@ -65,6 +65,10 @@ Tlocrti se ucitavaju po `externalId` iz `public/floorplans`; modal prvo trazi
 - `public/floorplans/APT_S1.webp`
 - `public/floorplans/APT_S1.png`
 
+Brosure se ucitavaju po `externalId` iz `public/brochures`:
+
+- `public/brochures/APT_S1.pdf`
+
 Admin podrzava promenu statusa, tipa (`APARTMENT` ili `GARAGE`), kvadrature,
 sobnosti, cene i valute.
 

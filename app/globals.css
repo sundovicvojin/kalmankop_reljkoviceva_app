@@ -246,6 +246,12 @@ svg.svg-layer [data-apartment-id] {
   transition: fill 160ms ease, stroke 160ms ease, opacity 160ms ease;
 }
 
+.svg-layer [data-filtered-out],
+svg.svg-layer [data-filtered-out] {
+  display: none;
+  pointer-events: none;
+}
+
 .svg-layer [data-apartment-id]:focus,
 .svg-layer [data-apartment-id]:focus-visible,
 svg.svg-layer [data-apartment-id]:focus,
