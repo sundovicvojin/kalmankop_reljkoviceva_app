@@ -247,6 +247,23 @@ svg.svg-layer [data-apartment-id] {
   transition: fill 160ms ease, stroke 160ms ease, opacity 160ms ease;
 }
 
+.svg-layer [data-panorama-id],
+svg.svg-layer [data-panorama-id] {
+  cursor: pointer;
+  pointer-events: all;
+  outline: none;
+  fill: rgba(217, 191, 122, 0.22);
+  stroke: rgba(245, 239, 227, 0.72);
+  stroke-width: 3;
+  transition: fill 160ms ease, stroke 160ms ease;
+}
+
+.svg-layer [data-panorama-id]:hover,
+svg.svg-layer [data-panorama-id]:hover {
+  fill: rgba(217, 191, 122, 0.44);
+  stroke: rgba(245, 239, 227, 0.90);
+}
+
 .svg-layer [data-filtered-out],
 svg.svg-layer [data-filtered-out] {
   display: none;
@@ -1306,5 +1323,74 @@ svg.svg-layer [data-apartment-id].is-active {
     scroll-behavior: auto !important;
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
+  }
+}
+
+.pano-modal {
+  position: fixed;
+  z-index: 50;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  width: min(1180px, calc(100vw - 48px));
+  height: min(760px, calc(100dvh - 64px));
+  overflow: hidden;
+  border: 1px solid rgba(245, 239, 227, 0.16);
+  border-radius: 30px;
+  background: var(--glass-strong);
+  backdrop-filter: blur(22px) saturate(145%);
+  box-shadow: var(--shadow);
+  transform: translate(-50%, -50%);
+}
+
+.pano-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px;
+}
+
+.pano-stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  margin: 0 12px 12px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--bg);
+}
+
+.pano-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  touch-action: none;
+}
+
+.pano-canvas:active {
+  cursor: grabbing;
+}
+
+.pano-message {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+@media (max-width: 760px) {
+  .pano-modal {
+    top: auto;
+    bottom: 0;
+    width: 100vw;
+    height: 82dvh;
+    border-radius: 30px 30px 0 0;
+    transform: translateX(-50%);
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }

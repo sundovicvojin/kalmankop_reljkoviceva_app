@@ -2,9 +2,10 @@
 
 import { type CSSProperties, type PointerEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, SlidersHorizontal, X } from "lucide-react";
-import { viewerViews } from "@/config/viewer";
+import { panoramas, viewerViews } from "@/config/viewer";
 import type { PublicApartment } from "@/lib/apartments";
 import { ApartmentDetail } from "@/components/viewer/ApartmentDetail";
+import { PanoramaModal } from "@/components/viewer/PanoramaModal";
 import { FrameSequence } from "@/components/viewer/FrameSequence";
 import type { FrameSequenceHandle } from "@/components/viewer/FrameSequence";
 import { SvgOverlay } from "@/components/viewer/SvgOverlay";
@@ -33,6 +34,7 @@ export function BuildingViewer({ apartments }: Props) {
   const [viewIndex, setViewIndex] = useState(0);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [panoramaId, setPanoramaId] = useState<string | null>(null);
   const [hoverPoint, setHoverPoint] = useState({ x: 0, y: 0 });
   const [imageSrc, setImageSrc] = useState(viewerViews[0]?.image ?? "");
   const [isAnimating, setIsAnimating] = useState(false);
@@ -192,7 +194,7 @@ export function BuildingViewer({ apartments }: Props) {
       return;
     }
 
-    if (event.target instanceof Element && event.target.closest("[data-apartment-id]")) {
+    if (event.target instanceof Element && event.target.closest("[data-apartment-id], [data-panorama-id]")) {
       return;
     }
 
@@ -249,7 +251,7 @@ export function BuildingViewer({ apartments }: Props) {
       const target = event.target;
       const isFormField = target instanceof HTMLElement && ["INPUT", "SELECT", "TEXTAREA"].includes(target.tagName);
 
-      if (isFormField || selectedId || isFilterOpen) {
+      if (isFormField || selectedId || panoramaId || isFilterOpen) {
         return;
       }
 
@@ -266,7 +268,7 @@ export function BuildingViewer({ apartments }: Props) {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [changeView, isFilterOpen, selectedId]);
+  }, [changeView, isFilterOpen, panoramaId, selectedId]);
 
   return (
     <div className="viewer-layout">
@@ -310,6 +312,7 @@ export function BuildingViewer({ apartments }: Props) {
                       }
                     }}
                     onSelect={setSelectedId}
+                    onOpenPanorama={setPanoramaId}
                   />
                 )}
               </div>
@@ -333,6 +336,10 @@ export function BuildingViewer({ apartments }: Props) {
           <span>{hoveredApartment.floor}</span>
           <span>{statusLabel(hoveredApartment.status)}</span>
         </div>
+      ) : null}
+
+      {panoramaId && panoramas[panoramaId] ? (
+        <PanoramaModal panorama={panoramas[panoramaId]} onClose={() => setPanoramaId(null)} />
       ) : null}
 
       {selectedApartment ? <ApartmentDetail apartment={selectedApartment} onClose={() => setSelectedId(null)} /> : null}

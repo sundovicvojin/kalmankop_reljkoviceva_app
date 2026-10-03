@@ -58,3 +58,23 @@ export const viewerViews: ViewerView[] = [
     alt: "Reljkoviceva 59, dodatni pogled",
   },
 ];
+
+export type PanoramaConfig = {
+  id: string;
+  title: string;
+  image: string;
+};
+
+// Kljuc je id SVG elementa (ili data-panorama-id) u overlay-u, npr. <path id="hodnik_L" />.
+export const panoramas: Record<string, PanoramaConfig> = {
+  hodnik_L: {
+    id: "hodnik_L",
+    title: "Hodnik levo",
+    image: "/panorama/pano_levo.jpg",
+  },
+  hodnik_D: {
+    id: "hodnik_D",
+    title: "Hodnik desno",
+    image: "/panorama/pano_desno.jpg",
+  },
+};

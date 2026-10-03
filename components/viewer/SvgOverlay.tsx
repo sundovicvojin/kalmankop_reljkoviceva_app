@@ -1,7 +1,7 @@
 "use client";
 
 import { type KeyboardEvent, type MouseEvent, useEffect, useRef, useState } from "react";
-import type { ViewerView } from "@/config/viewer";
+import { panoramas, type ViewerView } from "@/config/viewer";
 import type { PublicApartment } from "@/lib/apartments";
 
 type Props = {
@@ -10,9 +10,10 @@ type Props = {
   activeId: string | null;
   onHover: (externalId: string | null, point?: { x: number; y: number }) => void;
   onSelect: (externalId: string) => void;
+  onOpenPanorama?: (panoramaId: string) => void;
 };
 
-export function SvgOverlay({ view, apartmentsByExternalId, activeId, onHover, onSelect }: Props) {
+export function SvgOverlay({ view, apartmentsByExternalId, activeId, onHover, onSelect, onOpenPanorama }: Props) {
   const [svg, setSvg] = useState<string>("");
   const layerRef = useRef<HTMLDivElement | null>(null);
 
@@ -51,6 +52,18 @@ export function SvgOverlay({ view, apartmentsByExternalId, activeId, onHover, on
 
     const root = layer.querySelector("svg");
     root?.setAttribute("preserveAspectRatio", "xMidYMid slice");
+
+    layer.querySelectorAll<SVGElement>("[data-panorama-id], [id^='hodnik_']").forEach((node) => {
+      const id = node.dataset.panoramaId || node.id;
+      const panorama = panoramas[id];
+      if (!panorama) {
+        return;
+      }
+      node.setAttribute("data-panorama-id", id);
+      node.setAttribute("tabindex", "0");
+      node.setAttribute("role", "button");
+      node.setAttribute("aria-label", `360 prikaz: ${panorama.title}`);
+    });
 
     const nodes = layer.querySelectorAll<SVGElement>("[data-apartment-id], [id^='APT_']");
     nodes.forEach((node) => {
@@ -91,7 +104,22 @@ export function SvgOverlay({ view, apartmentsByExternalId, activeId, onHover, on
     return externalId && apartmentsByExternalId.has(externalId) ? externalId : null;
   }
 
+  function panoramaIdFromEvent(target: EventTarget | null) {
+    if (!(target instanceof Element)) {
+      return null;
+    }
+
+    const id = target.closest("[data-panorama-id]")?.getAttribute("data-panorama-id");
+    return id && panoramas[id] ? id : null;
+  }
+
   function handleClick(event: MouseEvent<HTMLDivElement | SVGSVGElement>) {
+    const panoramaId = panoramaIdFromEvent(event.target);
+    if (panoramaId) {
+      onOpenPanorama?.(panoramaId);
+      return;
+    }
+
     const externalId = apartmentIdFromEvent(event.target);
     if (externalId) {
       onSelect(externalId);
@@ -104,6 +132,13 @@ export function SvgOverlay({ view, apartmentsByExternalId, activeId, onHover, on
   }
 
   function handleKeyDown(event: KeyboardEvent<HTMLDivElement | SVGSVGElement>) {
+    const panoramaId = panoramaIdFromEvent(event.target);
+    if (panoramaId && (event.key === "Enter" || event.key === " ")) {
+      event.preventDefault();
+      onOpenPanorama?.(panoramaId);
+      return;
+    }
+
     const externalId = apartmentIdFromEvent(event.target);
     if (externalId && (event.key === "Enter" || event.key === " ")) {
       event.preventDefault();
