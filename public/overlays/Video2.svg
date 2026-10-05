@@ -6,5 +6,7 @@
 <path id="APT_S6" d="M811 567H474L465.5 468H811L820.5 462L822.5 551.5L811 567Z" stroke="#0000FF" stroke-width="2"/>
 <path id="APT_S7" d="M1130.5 551H822.5L820 462H1133L1130.5 551Z" stroke="#0000FF" stroke-width="2"/>
 <path id="APT_S8" d="M1192 551H1130.5L1133 462H1195.5L1205.5 465L1545.5 464.5L1534.5 559.5L1203.5 560.5L1192 551Z" stroke="#0000FF" stroke-width="2"/>
+<path id="hodnik_L" d="M969.5 722H911.5V668H969.5V722Z" stroke="#0800FF" stroke-width="2"/>
+<path id="hodnik_D" d="M1097 723H1039V669H1097V723Z" stroke="#0800FF" stroke-width="2"/>
 </g>
 </svg>
