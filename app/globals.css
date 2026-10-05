@@ -1394,3 +1394,26 @@ svg.svg-layer [data-apartment-id].is-active {
     padding-bottom: env(safe-area-inset-bottom);
   }
 }
+
+.brochure-page {
+  min-height: 100dvh;
+  padding: 16px;
+  background: var(--graphite, #0e0e0f);
+}
+
+.brochure-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 1100px;
+  margin: 0 auto 16px;
+}
+
+.brochure-image {
+  display: block;
+  width: 100%;
+  max-width: 1100px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 22px;
+}

@@ -5,6 +5,8 @@ import { Download, ExternalLink, MessageCircle, X } from "lucide-react";
 import type { PublicApartment } from "@/lib/apartments";
 import { statusLabels } from "@/lib/status";
 
+const assetVersion = process.env.NEXT_PUBLIC_ASSET_VERSION ?? "";
+
 type Props = {
   apartment: PublicApartment;
   onClose: () => void;
@@ -32,8 +34,7 @@ export function ApartmentDetail({ apartment, onClose }: Props) {
 }
 
 function Panel({ apartment, onClose, variant }: Props & { variant: "desktop" | "mobile" }) {
-  const floorplanUrl = `/floorplans/${apartment.externalId}.webp`;
-  const brochureUrl = `/brochures/${apartment.externalId}.pdf`;
+  const floorplanUrl = `/floorplans/${apartment.externalId}.webp?v=${assetVersion}`;
 
   return (
     <aside className={`detail-panel ${variant}`} aria-modal="true" role="dialog" aria-labelledby={`${variant}-apartment-title`}>
@@ -77,10 +78,12 @@ function Panel({ apartment, onClose, variant }: Props & { variant: "desktop" | "
               Pogledaj stan iznutra
             </a>
           ) : null}
-          <a className="action-link" href={brochureUrl} target="_blank" rel="noreferrer">
-            <Download size={18} aria-hidden />
-            Preuzmi brosuru
-          </a>
+          {apartment.brochureUrl ? (
+            <a className="action-link" href={apartment.brochureUrl} target="_blank" rel="noreferrer">
+              <Download size={18} aria-hidden />
+              Pogledaj brosuru
+            </a>
+          ) : null}
           <a className="action-link primary" href="https://kalmankop.rs/kontakt-kalman-kop-novi-sad/">
             <MessageCircle size={18} aria-hidden />
             Kontaktiraj KALMAN KOP

@@ -21,7 +21,7 @@ export function SvgOverlay({ view, apartmentsByExternalId, activeId, onHover, on
     let alive = true;
     setSvg("");
 
-    fetch(view.overlay)
+    fetch(`${view.overlay}?v=${process.env.NEXT_PUBLIC_ASSET_VERSION ?? ""}`, { cache: "no-cache" })
       .then((response) => {
         if (!response.ok) {
           throw new Error("Overlay nije dostupan.");

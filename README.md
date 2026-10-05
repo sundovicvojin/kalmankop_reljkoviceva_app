@@ -60,14 +60,12 @@ Moze i `data-apartment-id="APT_S1"`. Isti `externalId` mora da postoji u bazi. S
 - `public/overlays/Video5.svg`
 
 Tlocrti se ucitavaju po `externalId` iz `public/floorplans`; modal prvo trazi
-`.webp`, pa `.png`:
+`.webp`:
 
 - `public/floorplans/APT_S1.webp`
-- `public/floorplans/APT_S1.png`
 
-Brosure se ucitavaju po `externalId` iz `public/brochures`:
-
-- `public/brochures/APT_S1.pdf`
+Brosure se ucitavaju po `externalId` iz `public/brochures` (`.pdf`, `.jpg`, `.jpeg`, `.png` ili `.webp`).
+Slike se otvaraju na `/brochure/APT_S1`, PDF direktno. Dugme se prikazuje samo ako brosura postoji.
 
 Admin podrzava promenu statusa, tipa (`APARTMENT` ili `GARAGE`), kvadrature,
 sobnosti, cene i valute.
