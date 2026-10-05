@@ -81,7 +81,7 @@ function Panel({ apartment, onClose, variant }: Props & { variant: "desktop" | "
           {apartment.brochureUrl ? (
             <a className="action-link" href={apartment.brochureUrl} target="_blank" rel="noreferrer">
               <Download size={18} aria-hidden />
-              Pogledaj brosuru
+              Preuzmi brosuru
             </a>
           ) : null}
           <a className="action-link primary" href="https://kalmankop.rs/kontakt-kalman-kop-novi-sad/">
